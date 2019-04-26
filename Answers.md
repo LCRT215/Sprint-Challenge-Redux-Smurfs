@@ -4,9 +4,14 @@
 
 store holds the whole state tree
 actions send data to the application from the store
+reducers change the states based on the actions sent to the store
 
 1.  What is the difference between Application state and Component state? When would be a good time to use one over the other?
 
 1.  What is middleware?
+
+middleware is code you can put between the framework receiving a request and the framework generating a response
+
 1.  Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
 1.  Which `react-redux` method links up our `components` with our `redux store`?
