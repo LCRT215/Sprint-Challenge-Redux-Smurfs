@@ -38,12 +38,13 @@ const initialState = {
 */
 
 function reducer(state = initialState, action) {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case FETCH_SMURF_START:
       return {
         ...state,
         fetchingSmurf: true,
+        addingSmurf: false,
         error: " "
       };
     case FETCH_SMURF_SUCCESS:
@@ -51,17 +52,20 @@ function reducer(state = initialState, action) {
         ...state,
         smurfs: action.payload,
         fetchingSmurf: false,
+        addingSmurf: false,
         error: " "
       };
     case FETCH_SMURF_FAILURE:
       return {
         ...state,
         fetchingSmurf: false,
+        addingSmurf: false,
         error: action.payload
       };
     case ADD_SMURF_START:
       return {
         ...state,
+        fetchingSmurf: false,
         addingSmurf: true,
         error: ""
       };
@@ -69,23 +73,18 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         smurfs: action.payload,
+        fetchingSmurf: false,
         addingSmurf: false,
         error: ""
       };
     case ADD_SMURF_FAILURE:
       return {
         ...state,
-        fetchingSmurfs: false,
+        fetchingSmurf: false,
+        addingSmurfs: false,
         error: action.payload
       };
   }
 }
 
 export default reducer;
-
-// const initialState = {
-//   smurfs: [],
-//   fetchingSmurfs: false,
-//   addingSmurf: false,
-//   error: null
-// };
