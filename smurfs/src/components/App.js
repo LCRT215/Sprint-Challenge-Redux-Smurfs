@@ -29,8 +29,10 @@ class App extends Component {
     this.props.addSmurfs({
       name: this.state.name,
       age: this.state.age,
-      height: this.state.height
+      height: this.state.height + " cm"
     });
+
+    this.setState({ name: "", age: "", height: "" });
   };
 
   render() {
