@@ -9,49 +9,67 @@ import { getSmurfs, addSmurfs } from "../actions";
  Just remember, `how do I `connect` my components to redux?`
  `How do I ensure that my component links the state to props?`
  */
-// class App extends Component {
-//   constructor() {
-//     super();
-//   }
-//   componentDidMount() {
-//     this.props.getSmurfs();
-//   }
-//   render() {
-//     return (
-//       <div className="App">
-//         <h1>SMURFS!</h1>
-//         <p>
-//           <strong>Name: </strong> {props.smurfs.name}
-//         </p>
-//         <p>
-//           <strong>Age: </strong> {props.smurfs.age}
-//         </p>
-//         <p>
-//           <strong>Height: </strong> {props.smurfs.height}
-//         </p>
-//       </div>
-//     );
-//   }
-// }
+class App extends Component {
+  state = {
+    name: "",
+    age: "",
+    height: ""
+  };
 
-const App = props => {
-  console.log(smurfs);
-  return (
-    <div className="App">
-      <h1>SMURFS!</h1>
-      console.log(smurfs)
-      <p>
-        <strong>Name: </strong> {props.smurfs.name}
-      </p>
-      <p>
-        <strong>Age: </strong> {props.smurfs.age}
-      </p>
-      <p>
-        <strong>Height: </strong> {props.smurfs.height}
-      </p>
-    </div>
-  );
-};
+  componentDidMount() {
+    this.props.getSmurfs();
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>SMURFS!</h1>
+        {this.props.fetchingSmurf ? (
+          <div> Getting Smurfs... </div>
+        ) : (
+          <div>
+            {this.props.smurfs.map(smurfs => {
+              return (
+                <div key={smurfs.id}>
+                  <h3>
+                    {" "}
+                    <strong>Name: </strong>
+                    {smurfs.name}
+                  </h3>
+                  <p>
+                    <strong>Age: </strong>
+                    {smurfs.age}
+                  </p>
+                  <p>
+                    <strong>Height:</strong> {smurfs.height}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+// const App = props => {
+//   console.log(props.smurfs);
+//   return (
+//     <div className="App">
+//       <h1>SMURFS!</h1>
+//       <p>
+//         <strong>Name: </strong> {props.smurfs.name}
+//       </p>
+//       <p>
+//         <strong>Age: </strong> {props.smurfs.age}
+//       </p>
+//       <p>
+//         <strong>Height: </strong> {props.smurfs.height}
+//       </p>
+//     </div>
+//   );
+// };
 
 const mapStateToProps = state => ({
   smurfs: state.smurfs,
