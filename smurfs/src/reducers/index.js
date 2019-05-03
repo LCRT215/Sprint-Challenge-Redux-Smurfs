@@ -8,9 +8,11 @@
    smurfs: [],
    fetchingSmurfs: false
    addingSmurf: false
+   error: null 
+
    updatingSmurf: false
    deletingSmurf: false
-   error: null
+   
  }
 */
 
