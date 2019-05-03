@@ -23,12 +23,12 @@ export const getSmurfs = () => {
   };
 };
 
-export const addSmurfs = () => {
+export const addSmurfs = smurf => {
   return function(dispatch) {
     dispatch({ type: ADD_SMURF_START });
 
     axios
-      .post(`http://localhost:3333/smurfs`)
+      .post(`http://localhost:3333/smurfs`, smurf)
       .then(res => dispatch({ type: ADD_SMURF_SUCCESS, payload: res.data }))
       .catch(err => dispatch({ type: ADD_SMURF_FAILURE, payload: err }));
   };

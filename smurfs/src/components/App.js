@@ -24,6 +24,15 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  addSmurf = () => {
+    // const { name, age, height } = this.state;
+    this.props.addSmurfs({
+      name: this.state.name,
+      age: this.state.age,
+      height: this.state.height
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -47,9 +56,10 @@ class App extends Component {
                 </div>
               );
             })}
+            <hr />
           </div>
         )}
-        <hr />
+
         <div className="addSmurfForm">
           <h3>Add your new Smurf!</h3>
           <form>
@@ -77,6 +87,10 @@ class App extends Component {
               placeholder="Height..."
             />
           </form>
+          <br />
+          <button onClick={() => this.addSmurf()} type="button">
+            Add Smurf
+          </button>
         </div>
       </div>
     );
