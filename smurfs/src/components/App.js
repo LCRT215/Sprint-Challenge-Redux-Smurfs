@@ -19,11 +19,16 @@ class App extends Component {
   componentDidMount() {
     this.props.getSmurfs();
   }
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   render() {
     return (
       <div className="App">
         <h1>SMURFS!</h1>
+        <hr />
         {this.props.fetchingSmurf ? (
           <div> Getting Smurfs... </div>
         ) : (
@@ -31,11 +36,7 @@ class App extends Component {
             {this.props.smurfs.map(smurfs => {
               return (
                 <div key={smurfs.id}>
-                  <h3>
-                    {" "}
-                    <strong>Name: </strong>
-                    {smurfs.name}
-                  </h3>
+                  <h2> {smurfs.name}</h2>
                   <p>
                     <strong>Age: </strong>
                     {smurfs.age}
@@ -48,28 +49,39 @@ class App extends Component {
             })}
           </div>
         )}
+        <hr />
+        <div className="addSmurfForm">
+          <h3>Add your new Smurf!</h3>
+          <form>
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+              placeholder="Name..."
+            />
+            <br />
+            <input
+              type="number"
+              name="age"
+              value={this.state.age}
+              onChange={this.handleChange}
+              placeholder="Age..."
+            />
+            <br />
+            <input
+              type="text"
+              name="height"
+              value={this.state.height}
+              onChange={this.handleChange}
+              placeholder="Height..."
+            />
+          </form>
+        </div>
       </div>
     );
   }
 }
-
-// const App = props => {
-//   console.log(props.smurfs);
-//   return (
-//     <div className="App">
-//       <h1>SMURFS!</h1>
-//       <p>
-//         <strong>Name: </strong> {props.smurfs.name}
-//       </p>
-//       <p>
-//         <strong>Age: </strong> {props.smurfs.age}
-//       </p>
-//       <p>
-//         <strong>Height: </strong> {props.smurfs.height}
-//       </p>
-//     </div>
-//   );
-// };
 
 const mapStateToProps = state => ({
   smurfs: state.smurfs,
