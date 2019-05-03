@@ -24,7 +24,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   smurfs: state.smurfs,
-  fetchingSmurfs: state.fetchingSmurfs,
+  fetchingSmurf: state.fetchingSmurf,
   addingSmurf: state.addingSmurf,
   error: state.error
 });
